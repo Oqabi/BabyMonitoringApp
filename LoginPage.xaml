@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabyMonitoringApp.LoginPage"
+             BackgroundColor="#78CAC5">
+
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+
+        <Image Source="baby_logo_icon.png" WidthRequest="150" HeightRequest="150"/>
+
+        <Label Text="Baby Monitoring Device" 
+               FontAttributes="Bold" 
+               FontSize="20" 
+               HorizontalOptions="Center" 
+               TextColor="White" />
+
+        <Frame BackgroundColor="White" CornerRadius="20" Padding="0" WidthRequest="250" HeightRequest="50" HasShadow="True">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="google_login_icon.png" WidthRequest="24" HeightRequest="24" />
+                <Label Text="Sign in with Google" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnGoogleLoginClicked"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame BackgroundColor="#1877F2" CornerRadius="20" Padding="0" WidthRequest="250" HeightRequest="50" HasShadow="True">
+            <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <Image Source="facebook_login_icon.png" WidthRequest="24" HeightRequest="24" />
+                <Label Text="Sign in with Facebook" TextColor="White" FontAttributes="Bold" VerticalOptions="Center" Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnFacebookLoginClicked"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+    </VerticalStackLayout>
+
+</ContentPage>
