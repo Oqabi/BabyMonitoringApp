@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BabyMonitoringApp.Pages;
+using BabyMonitoringApp.Utils;
+using Microsoft.Extensions.Logging;
 
 namespace BabyMonitoringApp
 {
@@ -18,6 +20,10 @@ namespace BabyMonitoringApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            // Add services
+            builder.Services.AddSingleton<IDialogService, DialogService>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
 
             return builder.Build();
         }
