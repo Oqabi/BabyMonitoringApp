@@ -1,5 +1,7 @@
 ﻿using BabyMonitoringApp.Pages;
 using BabyMonitoringApp.Utils;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
 using Microsoft.Extensions.Logging;
 
 namespace BabyMonitoringApp
@@ -25,6 +27,16 @@ namespace BabyMonitoringApp
             builder.Services.AddSingleton<IDialogService, DialogService>();
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig()
+            {
+                ApiKey = "AIzaSyCgljh67YIMVVFRIFaTfhBegPc8NyZHi20",
+                AuthDomain = "babymonitoring-af3da.firebaseapp.com",
+                Providers =
+                [
+                    new GoogleProvider(),
+                    new FacebookProvider()
+                ]
+            }));
 
             return builder.Build();
         }
