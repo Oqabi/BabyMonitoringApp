@@ -3,28 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BabyMonitoringApp.Pages.LoginPage"
              xmlns:local="clr-namespace:BabyMonitoringApp.Pages"
-             BackgroundColor="#78CAC5">
+             BackgroundColor="#78CAC5"
+             x:DataType="local:LoginPageViewModel">
+
+    <ContentPage.Resources>
+        <Style x:Key="BaseSignInButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontFamily" Value="Roboto" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="PointerOver">
+                            <VisualState.Setters>
+                                <Setter Property="FontAttributes" Value="Bold" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor" Value="#555555" />
+                                <Setter Property="FontAttributes" Value="Bold" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FacebookButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseSignInButtonStyle}">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <Style x:Key="GoogleButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseSignInButtonStyle}">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+    </ContentPage.Resources>
 
     <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
 
         <Image Source="baby_logo_icon.png" WidthRequest="150" HeightRequest="150"/>
 
         <Label Text="Baby Monitoring Device" 
-               FontAttributes="Bold"
-               FontFamily=""
-               FontSize="20" 
-               HorizontalOptions="Center" 
-               TextColor="White" />
+               FontFamily="Roboto"
+               FontSize="40" 
+               LineBreakMode="WordWrap"
+               HorizontalTextAlignment="Center"
+               TextColor="White"
+               MaxLines="2"
+               WidthRequest="300"/>
 
         <Frame BackgroundColor="White" CornerRadius="20" Padding="0" WidthRequest="250" HeightRequest="50" HasShadow="True">
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="google_login_icon.png" WidthRequest="24" HeightRequest="24" />
                 <Button Text="Sign in with Google"
-                        Background="Transparent"
-                        TextColor="Black" 
-                        FontAttributes="Bold" 
-                        VerticalOptions="Center" 
-                        Margin="10,0,0,0"
+                        Style="{StaticResource GoogleButtonStyle}"
                         Command="{Binding SignInWithGoogleCommand}"/>
             </HorizontalStackLayout>
         </Frame>
@@ -33,11 +73,7 @@
             <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <Image Source="facebook_login_icon.png" WidthRequest="24" HeightRequest="24" />
                 <Button Text="Sign in with Facebook" 
-                        TextColor="White"
-                        Background="Transparent"
-                        FontAttributes="Bold" 
-                        VerticalOptions="Center" 
-                        Margin="10,0,0,0"
+                        Style="{StaticResource FacebookButtonStyle}"
                         Command="{Binding SignInWithFacebookCommand}"/>
             </HorizontalStackLayout>
         </Frame>
